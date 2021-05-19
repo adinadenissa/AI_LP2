@@ -51,7 +51,7 @@ class App(tk.Tk):
         self.option_add('*TCombobox*Listbox.font', font)
         self.from_currency_dropdown = ttk.Combobox(self, textvariable=self.from_currency_variable,values=list(self.currency_converter.currencies.keys()), font = font, state = 'readonly', width = 12, justify = tk.CENTER)
         self.to_currency_dropdown = ttk.Combobox(self, textvariable=self.to_currency_variable,values=list(self.currency_converter.currencies.keys()), font = font, state = 'readonly', width = 12, justify = tk.CENTER)
-        
+
         self.from_currency_dropdown.place(x = 30, y= 120)
         self.amount_field.place(x = 36, y = 150)
         self.to_currency_dropdown.place(x = 340, y= 120)
@@ -72,10 +72,14 @@ class App(tk.Tk):
         self.converted_amount_field_label.config(text = str(converted_amount))
 
 
+    def restrictNumberOnly(self, action, string):
+        regex = re.compile(r"[0-9,]*?(\.)?[0-9,]*$")
+        result = regex.match(string)
+        return (string == "" or (string.count('.') <= 1 and result is not None))
+
 if __name__ == '__main__':
     url = 'https://api.exchangerate-api.com/v4/latest/USD'
     converter = RealTimeCurrencyConverter(url)
 
     App(converter)
     mainloop()
-
