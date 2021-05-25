@@ -25,17 +25,22 @@ class App(tk.Tk):
         self.title = 'Currency Converter'
         self.currency_converter = converter
 
-        self.geometry("500x200")
+        self.geometry("500x300")
 
         # Frame
         self.intro_label = Label(self, text = 'Bine ai venit pe convertorul online',  fg = 'blue', relief = tk.RAISED, borderwidth = 3)
         self.intro_label.config(font = ('Courier',15,'bold'))
 
         self.date_label = Label(self, text = f"1 RON = {self.currency_converter.convert('RON','EUR',1)} EUR \n Date : {self.currency_converter.data['date']}", relief = tk.GROOVE, borderwidth = 5)
+        self.date_label2 = Label(self, text = f"1 RON = {self.currency_converter.convert('RON','USD',1)} USD \n Date : {self.currency_converter.data['date']}", relief = tk.GROOVE, borderwidth = 5)
+        self.date_label3 = Label(self, text = f"1 RON = {self.currency_converter.convert('RON','GBP',1)} GBP \n Date : {self.currency_converter.data['date']}", relief = tk.GROOVE, borderwidth = 5)
+        self.date_label4 = Label(self, text = f"1 RON = {self.currency_converter.convert('RON','MDL',1)} MDL \n Date : {self.currency_converter.data['date']}", relief = tk.GROOVE, borderwidth = 5)
 
         self.intro_label.place(x = 10 , y = 5)
-        self.date_label.place(x = 160, y= 50)
-
+        self.date_label.place(x = 200, y= 50)
+        self.date_label2.place(x= 200, y= 90)
+        self.date_label3.place(x= 200, y= 130)
+        self.date_label4.place(x= 200, y= 170)
 
         valid = (self.register(self.restrictNumberOnly), '%d', '%P')
         self.amount_field = Entry(self,bd = 3, relief = tk.RIDGE, justify = tk.CENTER,validate='key', validatecommand=valid)
@@ -59,7 +64,7 @@ class App(tk.Tk):
 
         self.convert_button = Button(self, text = "Convert", fg = "black", command = self.perform)
         self.convert_button.config(font=('Courier', 10, 'bold'))
-        self.convert_button.place(x = 225, y = 135)
+        self.convert_button.place(x = 225, y = 220)
 
     def perform(self):
         amount = float(self.amount_field.get())
