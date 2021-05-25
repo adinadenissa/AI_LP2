@@ -22,7 +22,7 @@ class App(tk.Tk):
 
     def __init__(self, converter):
         tk.Tk.__init__(self)
-        self.title = 'Currency Converter'
+        self.title ('Convertor valutar')
         self.currency_converter = converter
 
         self.geometry("500x300")
